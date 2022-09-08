@@ -7,8 +7,11 @@ export PNPM_HOME="/Users/lunchb0ne/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
 # Use `bat` as the man-page viewer.
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export HOMEBREW_BAT=1 # And for Homebrew too.
+# Only do this if bat is installed
+if command -v bat >>/dev/null; then
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+    export HOMEBREW_BAT=1 # And for Homebrew too.
+fi
 
 # Use 1pw for ssh agent.
 export SSH_AUTH_SOCK=~/.1password/agent.sock
