@@ -105,6 +105,12 @@ if command -v chezmoi >>/dev/null; then
     eval "$(chezmoi completion zsh)"
 fi
 
+# Fix cursor sometimes when it gets stuck
+_fix_cursor() {
+    echo -ne "\e[3 q"
+}
+add-zsh-hook precmd _fix_cursor
+
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true # pnpm completions using their modified tabtab
 
 z4h source ~/.alias.zsh # load aliases
