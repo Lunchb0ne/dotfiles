@@ -52,6 +52,7 @@ z4h install ohmyzsh/ohmyzsh || return                      # ohmyzsh as i use a 
 z4h install conda-incubator/conda-zsh-completion || return # 🐍 completions for conda & mamba
 z4h install clarketm/zsh-completions || return             # a compliation of a lot of zsh completions
 z4h install MichaelAquilina/zsh-you-should-use || return   # reminds me about aliases I've setup
+z4h install mroth/evalcache || true                        # load evalcache
 
 # Install or update core components (fzf, zsh-autosuggestions, etc.) and
 # initialize Zsh. After this point console I/O is unavailable until Zsh
@@ -61,19 +62,6 @@ z4h init || return
 
 # Source additional local environment files.
 z4h source ~/.env.zsh
-
-# Use additional Git repositories pulled in with `z4h install`.
-#
-z4h load -c ohmyzsh/ohmyzsh/plugins/git          # load git plugin
-z4h load -c ohmyzsh/ohmyzsh/plugins/golang       # load go-lang plugin
-z4h load -c ohmyzsh/ohmyzsh/plugins/zoxide       # load zoxide plugin
-z4h load -c ohmyzsh/ohmyzsh/plugins/vscode       # load vscode plugin
-z4h load -c ohmyzsh/ohmyzsh/plugins/macos        # load macos plugin
-z4h load -c conda-incubator/conda-zsh-completion # load anaconda-completions
-z4h load -c clarketm/zsh-completions             # load extended completions
-z4h load -c MichaelAquilina/zsh-you-should-use   # load abbr reminders
-
-# External Loaders
 
 # Load Anaconda
 # >>> conda initialize >>>
@@ -95,14 +83,26 @@ if [ -f "$HOMEBREW_PREFIX/Caskroom/mambaforge/base/etc/profile.d/mamba.sh" ]; th
 fi
 # <<< conda initialize <<<
 
-# load mcfly if it exists
-if command -v mcfly >>/dev/null; then
-    eval "$(mcfly init zsh)"
+# Use additional Git repositories pulled in with `z4h install`.
+#
+z4h load -c ohmyzsh/ohmyzsh/plugins/git          # load git plugin
+z4h load -c ohmyzsh/ohmyzsh/plugins/golang       # load go-lang plugin
+z4h load -c ohmyzsh/ohmyzsh/plugins/vscode       # load vscode plugin
+z4h load -c ohmyzsh/ohmyzsh/plugins/macos        # load macos plugin
+z4h load -c conda-incubator/conda-zsh-completion # load anaconda-completions
+z4h load -c clarketm/zsh-completions             # load extended completions
+z4h load -c MichaelAquilina/zsh-you-should-use   # load abbr reminders
+z4h load -c mroth/evalcache                      # load eval chacher
+
+# External Loaders
+
+if command -v zoxide >>/dev/null; then
+    _evalcache zoxide init zsh --cmd x
 fi
 
 # load chezmoi completion if it exists
 if command -v chezmoi >>/dev/null; then
-    eval "$(chezmoi completion zsh)"
+    _evalcache chezmoi completion zsh
 fi
 
 # Fix cursor sometimes when it gets stuck
@@ -123,9 +123,6 @@ z4h bindkey z4h-cd-back Shift+Left     # cd into the previous directory
 z4h bindkey z4h-cd-forward Shift+Right # cd into the next directory
 z4h bindkey z4h-cd-up Shift+Up         # cd into the parent directory
 z4h bindkey z4h-cd-down Shift+Down     # cd into a child directory
-
-# Autoload functions.
-autoload -Uz zmv
 
 # Set shell options: http://zsh.sourceforge.net/Doc/Release/Options.html.
 setopt glob_dots    # no special treatment for file names with a leading dot
