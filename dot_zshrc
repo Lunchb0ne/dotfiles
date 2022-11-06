@@ -95,7 +95,6 @@ z4h load -c MichaelAquilina/zsh-you-should-use   # load abbr reminders
 z4h load -c mroth/evalcache                      # load eval chacher
 
 # External Loaders
-
 if command -v zoxide >>/dev/null; then
     _evalcache zoxide init zsh --cmd x
 fi
@@ -104,12 +103,6 @@ fi
 if command -v chezmoi >>/dev/null; then
     _evalcache chezmoi completion zsh
 fi
-
-# Fix cursor sometimes when it gets stuck
-_fix_cursor() {
-    echo -ne "\e[3 q"
-}
-add-zsh-hook precmd _fix_cursor
 
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true # pnpm completions using their modified tabtab
 

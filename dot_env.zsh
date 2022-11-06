@@ -13,6 +13,12 @@ if command -v bat >>/dev/null; then
     export HOMEBREW_BAT=1 # And for Homebrew too.
 fi
 
+# Fix cursor sometimes when it gets stuck
+_fix_cursor() {
+    echo -ne "\e[3 q"
+}
+add-zsh-hook precmd _fix_cursor
+
 # Export some default options for fzf theme
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
