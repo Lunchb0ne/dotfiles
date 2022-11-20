@@ -1,3 +1,4 @@
+#!/bin/zsh
 # Fig pre block. Keep at the top of this file.
 [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # Personal Zsh configuration file. It is strongly recommended to keep all
@@ -103,6 +104,8 @@ fi
 if command -v chezmoi >>/dev/null; then
     _evalcache chezmoi completion zsh
 fi
+
+# tabtab for pnpm
 
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true # pnpm completions using their modified tabtab
 

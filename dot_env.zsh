@@ -1,6 +1,7 @@
 # Almost of my environment variables
 
-export GPG_TTY=$TTY #Use current TTY for GPG.
+export GPG_TTY=$TTY                #Use current TTY for GPG.
+export HOMEBREW_INSTALL_FROM_API=1 # Use homebrew's api mode
 
 # pnpm
 export PNPM_HOME="/Users/lunchb0ne/Library/pnpm"
