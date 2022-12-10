@@ -97,7 +97,7 @@ z4h load -c mroth/evalcache                      # load eval chacher
 
 # External Loaders
 if command -v zoxide >>/dev/null; then
-    _evalcache zoxide init zsh --cmd x
+    _evalcache zoxide init zsh
 fi
 
 # load chezmoi completion if it exists
