@@ -53,7 +53,7 @@ z4h install ohmyzsh/ohmyzsh || return                      # ohmyzsh as i use a 
 z4h install conda-incubator/conda-zsh-completion || return # 🐍 completions for conda & mamba
 z4h install clarketm/zsh-completions || return             # a compliation of a lot of zsh completions
 z4h install MichaelAquilina/zsh-you-should-use || return   # reminds me about aliases I've setup
-z4h install mroth/evalcache || true                        # load evalcache
+z4h install mroth/evalcache || return                      # load evalcache
 
 # Install or update core components (fzf, zsh-autosuggestions, etc.) and
 # initialize Zsh. After this point console I/O is unavailable until Zsh
@@ -62,6 +62,7 @@ z4h install mroth/evalcache || true                        # load evalcache
 z4h init || return
 
 # Source additional local environment files.
+z4h source ~/.colors.zsh
 z4h source ~/.env.zsh
 
 # Load Anaconda
