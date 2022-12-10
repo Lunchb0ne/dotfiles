@@ -85,7 +85,6 @@ fi
 # <<< conda initialize <<<
 
 # Use additional Git repositories pulled in with `z4h install`.
-#
 z4h load -c ohmyzsh/ohmyzsh/plugins/git          # load git plugin
 z4h load -c ohmyzsh/ohmyzsh/plugins/golang       # load go-lang plugin
 z4h load -c ohmyzsh/ohmyzsh/plugins/vscode       # load vscode plugin
@@ -94,6 +93,7 @@ z4h load -c conda-incubator/conda-zsh-completion # load anaconda-completions
 z4h load -c clarketm/zsh-completions             # load extended completions
 z4h load -c MichaelAquilina/zsh-you-should-use   # load abbr reminders
 z4h load -c mroth/evalcache                      # load eval chacher
+z4h load -c ohmyzsh/ohmyzsh/plugins/magic-enter  # magic enter plugin
 
 # External Loaders
 if command -v zoxide >>/dev/null; then
