@@ -8,9 +8,9 @@
 # Documentation: https://github.com/romkatv/zsh4humans/blob/v5/README.md.
 # Periodic auto-update on Zsh startup: 'ask' or 'no'.
 # You can manually run `z4h update` to update everything.
-zstyle ':z4h:' auto-update 'no'
+zstyle ':z4h:' auto-update 'yes'
 # Ask whether to auto-update this often; has no effect if auto-update is 'no'.
-zstyle ':z4h:' auto-update-days '28'
+zstyle ':z4h:' auto-update-days '14'
 
 # Keyboard type: 'mac' or 'pc'.
 zstyle ':z4h:bindkey' keyboard 'mac'
@@ -98,16 +98,6 @@ z4h load -c quarticcat/zsh-smartcache            # load smart cache
 z4h load -c mroth/evalcache                      # load eval chacher
 z4h load -c ohmyzsh/ohmyzsh/plugins/magic-enter  # magic enter plugin
 
-# External Loaders
-if command -v zoxide >>/dev/null; then
-    _evalcache zoxide init zsh
-fi
-
-# load chezmoi completion if it exists
-if command -v chezmoi >>/dev/null; then
-    smartcache comp chezmoi completion zsh
-fi
-
 # tea hook for zsh
 add-zsh-hook -Uz chpwd(){ source <(tea -Eds) }  #tea
 
@@ -128,6 +118,26 @@ z4h bindkey z4h-cd-down Shift+Down     # cd into a child directory
 # Set shell options: http://zsh.sourceforge.net/Doc/Release/Options.html.
 setopt glob_dots    # no special treatment for file names with a leading dot
 setopt no_auto_menu # require an extra TAB press to open the completion menu
+
+# External Loaders
+if command -v zoxide >>/dev/null; then
+    _evalcache zoxide init zsh
+fi
+
+# load chezmoi completion if it exists
+if command -v chezmoi >>/dev/null; then
+    smartcache comp chezmoi completion zsh
+fi
+
+# load railway completions
+if command -v railway >>/dev/null; then
+    smartcache comp railway completion zsh
+fi
+
+# load gh completions
+if command -v gh >>/dev/null; then
+    smartcache comp gh completion -s zsh
+fi
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
