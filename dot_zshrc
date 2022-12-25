@@ -94,7 +94,6 @@ z4h load -c ohmyzsh/ohmyzsh/plugins/composer     # load composer plugin
 z4h load -c conda-incubator/conda-zsh-completion # load anaconda-completions
 z4h load -c clarketm/zsh-completions             # load extended completions
 z4h load -c MichaelAquilina/zsh-you-should-use   # load abbr reminders
-z4h load -c quarticcat/zsh-smartcache            # load smart cache
 z4h load -c mroth/evalcache                      # load eval chacher
 z4h load -c ohmyzsh/ohmyzsh/plugins/magic-enter  # magic enter plugin
 
@@ -126,17 +125,12 @@ fi
 
 # load chezmoi completion if it exists
 if command -v chezmoi >>/dev/null; then
-    smartcache comp chezmoi completion zsh
+    _evalcache chezmoi completion zsh
 fi
 
 # load railway completions
 if command -v railway >>/dev/null; then
-    smartcache comp railway completion zsh
-fi
-
-# load gh completions
-if command -v gh >>/dev/null; then
-    smartcache comp gh completion -s zsh
+    _evalcache railway completion zsh
 fi
 
 # Fig post block. Keep at the bottom of this file.
