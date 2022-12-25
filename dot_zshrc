@@ -53,8 +53,8 @@ z4h install ohmyzsh/ohmyzsh || return                      # ohmyzsh as i use a 
 z4h install conda-incubator/conda-zsh-completion || return # 🐍 completions for conda & mamba
 z4h install clarketm/zsh-completions || return             # a compliation of a lot of zsh completions
 z4h install MichaelAquilina/zsh-you-should-use || return   # reminds me about aliases I've setup
+z4h install quarticcat/zsh-smartcache || return            # load smart cache
 z4h install mroth/evalcache || return                      # load evalcache
-
 # Install or update core components (fzf, zsh-autosuggestions, etc.) and
 # initialize Zsh. After this point console I/O is unavailable until Zsh
 # is fully initialized. Everything that requires user interaction or can
@@ -90,9 +90,11 @@ z4h load -c ohmyzsh/ohmyzsh/plugins/git          # load git plugin
 z4h load -c ohmyzsh/ohmyzsh/plugins/golang       # load go-lang plugin
 z4h load -c ohmyzsh/ohmyzsh/plugins/vscode       # load vscode plugin
 z4h load -c ohmyzsh/ohmyzsh/plugins/macos        # load macos plugin
+z4h load -c ohmyzsh/ohmyzsh/plugins/composer     # load composer plugin
 z4h load -c conda-incubator/conda-zsh-completion # load anaconda-completions
 z4h load -c clarketm/zsh-completions             # load extended completions
 z4h load -c MichaelAquilina/zsh-you-should-use   # load abbr reminders
+z4h load -c quarticcat/zsh-smartcache            # load smart cache
 z4h load -c mroth/evalcache                      # load eval chacher
 z4h load -c ohmyzsh/ohmyzsh/plugins/magic-enter  # magic enter plugin
 
@@ -103,11 +105,13 @@ fi
 
 # load chezmoi completion if it exists
 if command -v chezmoi >>/dev/null; then
-    _evalcache chezmoi completion zsh
+    smartcache comp chezmoi completion zsh
 fi
 
-# tabtab for pnpm
+# tea hook for zsh
+add-zsh-hook -Uz chpwd(){ source <(tea -Eds) }  #tea
 
+# tabtab for pnpm
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true # pnpm completions using their modified tabtab
 
 z4h source ~/.alias.zsh # load aliases
