@@ -1,5 +1,6 @@
+#!/bin/zsh
 # Almost of my environment variables
-
+export ZSH_COMP_DIR="$HOME/.zsh/comp/"
 export GPG_TTY=$TTY                #Use current TTY for GPG.
 export HOMEBREW_INSTALL_FROM_API=1 # Use homebrew's api mode
 
@@ -20,12 +21,6 @@ _fix_cursor() {
 }
 add-zsh-hook precmd _fix_cursor
 
-# Export some default options for fzf theme
-export FZF_DEFAULT_OPTS=" \
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
-
 # Use 1pw for ssh agent.
 export SSH_AUTH_SOCK=~/.1password/agent.sock
 
@@ -38,3 +33,25 @@ path=(
     $path
     $GOPATH/bin
 )
+
+# Enrich FPATH.
+fpath=(
+    $fpath
+    $ZSH_COMP_DIR
+)
+
+# arg1: the command
+# arg2: the command that we should use to generate completions
+function completion_cacher() {
+    if (($ +commands["$1"])); then
+        # If the completion file doesn't exist yet, we need to autoload it and
+        # bind it to `$1`. Otherwise, compinit will have already done that.
+        if [[ ! -f "$ZSH_COMP_DIR/_$1" ]]; then
+            typeset -g -A _comps
+            autoload -Uz "_$1"
+            _comps["$1"]="_$1"
+        fi
+
+      eval "$2" >| "$ZSH_COMP_DIR/_$1" &|
+    fi
+}

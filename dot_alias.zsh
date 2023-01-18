@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # Define functions and completions.
 function md() {
     [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1"

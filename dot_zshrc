@@ -42,7 +42,7 @@ zstyle ':z4h:ssh:*' enable 'no'
 
 # Send these files over to the remote host when connecting over SSH to the
 # enabled hosts.
-zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh'
+zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh' '~/.colors.zsh' '~/.alias.zsh'
 
 # Clone additional Git repositories from GitHub.
 #
@@ -53,8 +53,9 @@ z4h install ohmyzsh/ohmyzsh || return                      # ohmyzsh as i use a 
 z4h install conda-incubator/conda-zsh-completion || return # 🐍 completions for conda & mamba
 z4h install clarketm/zsh-completions || return             # a compliation of a lot of zsh completions
 z4h install MichaelAquilina/zsh-you-should-use || return   # reminds me about aliases I've setup
-z4h install quarticcat/zsh-smartcache || return            # load smart cache
-z4h install mroth/evalcache || return                      # load evalcache
+z4h install mroth/evalcache || return                      # evalcache too
+z4h install cowboyd/zsh-volta || return                    # volta toolchain
+
 # Install or update core components (fzf, zsh-autosuggestions, etc.) and
 # initialize Zsh. After this point console I/O is unavailable until Zsh
 # is fully initialized. Everything that requires user interaction or can
@@ -95,6 +96,7 @@ z4h load -c conda-incubator/conda-zsh-completion # load anaconda-completions
 z4h load -c clarketm/zsh-completions             # load extended completions
 z4h load -c MichaelAquilina/zsh-you-should-use   # load abbr reminders
 z4h load -c mroth/evalcache                      # load eval chacher
+z4h load -c cowboyd/zsh-volta                    # load volta toolchain
 z4h load -c ohmyzsh/ohmyzsh/plugins/magic-enter  # magic enter plugin
 
 # tea hook for zsh
@@ -119,19 +121,13 @@ setopt glob_dots    # no special treatment for file names with a leading dot
 setopt no_auto_menu # require an extra TAB press to open the completion menu
 
 # External Loaders
+completion_cacher chezmoi "chezmoi completion zsh"
+completion_cacher railway "railway completion zsh"
+completion_cacher volta "volta completions zsh"
+
+# zoxide support
 if command -v zoxide >>/dev/null; then
     _evalcache zoxide init zsh
 fi
-
-# load chezmoi completion if it exists
-if command -v chezmoi >>/dev/null; then
-    _evalcache chezmoi completion zsh
-fi
-
-# load railway completions
-if command -v railway >>/dev/null; then
-    _evalcache railway completion zsh
-fi
-
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
