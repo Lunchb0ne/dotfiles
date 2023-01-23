@@ -124,6 +124,7 @@ setopt no_auto_menu # require an extra TAB press to open the completion menu
 completion_cacher chezmoi "chezmoi completion zsh"
 completion_cacher railway "railway completion zsh"
 completion_cacher volta "volta completions zsh"
+completion_cacher colima "colima completion zsh"
 
 # zoxide support
 if command -v zoxide >>/dev/null; then
