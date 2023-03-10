@@ -128,6 +128,8 @@ completion_cacher volta "volta completions zsh"
 completion_cacher colima "colima completion zsh"
 completion_cacher docker "docker completion zsh"
 
+# bind atuin search widget to ctrl+r
+bindkey '^r' _atuin_search_widget
 # zoxide support
 _evalcache zoxide init zsh
 
