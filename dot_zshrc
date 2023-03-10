@@ -102,9 +102,8 @@ z4h load -c ohmyzsh/ohmyzsh/plugins/magic-enter  # magic enter plugin
 z4h load -c ellie/atuin                          # load atuin
 
 # tea hook for zsh
-add-zsh-hook -Uz chpwd(){ source <(tea -Eds) }  #tea
+source <(tea --magic)
 
-# tabtab for pnpm
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true # pnpm completions using their modified tabtab
 
 z4h source ~/.alias.zsh # load aliases
@@ -127,10 +126,10 @@ completion_cacher chezmoi "chezmoi completion zsh"
 completion_cacher railway "railway completion zsh"
 completion_cacher volta "volta completions zsh"
 completion_cacher colima "colima completion zsh"
+completion_cacher docker "docker completion zsh"
 
 # zoxide support
-if command -v zoxide >>/dev/null; then
-    _evalcache zoxide init zsh
-fi
+_evalcache zoxide init zsh
+
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

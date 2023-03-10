@@ -33,18 +33,20 @@ alias tree='tree -a -I .git'
 
 # ls helper aliases.
 alias l='ls -lA'
+alias la='ls -A'
+alias ll='ls -l'
 alias lt='ls -A --tree'
 
 # Check if lsd is installed, to alias ls to lsd.
 if command -v lsd >>/dev/null; then
-    alias ls='lsd'
     alias ls_="$(where ls | sed '2q;d')" # Old ls command for compatibility.
+    alias ls='lsd'
 fi
 
 # Check if bat is installed, then alias cat to bat.
 if command -v bat >>/dev/null; then
-    alias cat='bat --paging=never'
     alias cat_="$(where cat | sed '2q;d')" # Old cat for compat.
+    alias cat='bat'
 fi
 
 alias python='python3' # Python alias.
