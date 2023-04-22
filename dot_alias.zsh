@@ -1,5 +1,4 @@
 #!/bin/zsh
-
 # Define functions and completions.
 function md() {
     [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1"
@@ -31,21 +30,15 @@ compdef _conda mamba
 # Define aliases.
 alias tree='tree -a -I .git'
 
-# ls helper aliases.
-alias l='ls -lA'
-alias la='ls -A'
-alias ll='ls -l'
-alias lt='ls -A --tree'
-
-# Check if lsd is installed, to alias ls to lsd.
-if command -v lsd >>/dev/null; then
-    alias ls_="$(where ls | sed '2q;d')" # Old ls command for compatibility.
-    alias ls='lsd'
+# Check if exa is installed, to alias ls to lsd.
+if command -v exa >>/dev/null; then
+    alias ls_="$(where ls)" # Old ls command for compatibility.
+    alias ls='exa'
 fi
 
 # Check if bat is installed, then alias cat to bat.
 if command -v bat >>/dev/null; then
-    alias cat_="$(where cat | sed '2q;d')" # Old cat for compat.
+    alias cat_="$(where cat)" # Old cat for compat.
     alias cat='bat'
 fi
 
@@ -53,4 +46,4 @@ alias python='python3' # Python alias.
 alias pip='pip3'       # Pip alias.
 
 # Add flags to existing aliases.
-alias ls="${aliases[ls]:-ls} -A"
+alias ls="${aliases[ls]:-ls} --icons"

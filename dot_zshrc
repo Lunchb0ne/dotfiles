@@ -28,11 +28,6 @@ zstyle ':z4h:autosuggestions' forward-char 'accept'
 # Recursively traverse directories when TAB-completing files.
 zstyle ':z4h:fzf-complete' recurse-dirs 'no'
 
-# Enable direnv to automatically source .envrc files.
-zstyle ':z4h:direnv' enable 'yes'
-# Show "loading" and "unloading" notifications from direnv.
-zstyle ':z4h:direnv:success' notify 'yes'
-
 # Enable ('yes') or disable ('no') automatic teleportation of z4h over
 # SSH when connecting to these hosts.
 zstyle ':z4h:ssh:example-hostname1' enable 'yes'
@@ -64,7 +59,6 @@ z4h install ellie/atuin || return                          # atuin shell history
 z4h init || return
 
 # Source additional local environment files.
-z4h source ~/.colors.zsh
 z4h source ~/.env.zsh
 
 # Load Anaconda
@@ -88,25 +82,26 @@ fi
 # <<< conda initialize <<<
 
 # Use additional Git repositories pulled in with `z4h install`.
-z4h load -c ohmyzsh/ohmyzsh/plugins/git          # load git plugin
-z4h load -c ohmyzsh/ohmyzsh/plugins/golang       # load go-lang plugin
-z4h load -c ohmyzsh/ohmyzsh/plugins/vscode       # load vscode plugin
-z4h load -c ohmyzsh/ohmyzsh/plugins/macos        # load macos plugin
-z4h load -c ohmyzsh/ohmyzsh/plugins/composer     # load composer plugin
-z4h load -c conda-incubator/conda-zsh-completion # load anaconda-completions
-z4h load -c clarketm/zsh-completions             # load extended completions
-z4h load -c MichaelAquilina/zsh-you-should-use   # load abbr reminders
-z4h load -c mroth/evalcache                      # load eval chacher
-z4h load -c cowboyd/zsh-volta                    # load volta toolchain
-z4h load -c ohmyzsh/ohmyzsh/plugins/magic-enter  # magic enter plugin
-z4h load -c ellie/atuin                          # load atuin
+z4h load ohmyzsh/ohmyzsh/plugins/git          # load git plugin
+z4h load ohmyzsh/ohmyzsh/plugins/golang       # load go-lang plugin
+z4h load ohmyzsh/ohmyzsh/plugins/vscode       # load vscode plugin
+z4h load ohmyzsh/ohmyzsh/plugins/macos        # load macos plugin
+z4h load ohmyzsh/ohmyzsh/plugins/composer     # load composer plugin
+z4h load conda-incubator/conda-zsh-completion # load anaconda-completions
+z4h load clarketm/zsh-completions             # load extended completions
+z4h load MichaelAquilina/zsh-you-should-use   # load abbr reminders
+z4h load mroth/evalcache                      # load eval chacher
+z4h load cowboyd/zsh-volta                    # load volta toolchain
+z4h load ohmyzsh/ohmyzsh/plugins/magic-enter  # magic enter plugin
+z4h load ellie/atuin                          # load atuin
 
 # tea hook for zsh
 source <(tea --magic)
 
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true # pnpm completions using their modified tabtab
 
-z4h source ~/.alias.zsh # load aliases
+z4h source ~/.alias.zsh  # load aliases
+z4h source ~/.colors.zsh # load custom colors
 
 # Define key bindings.
 z4h bindkey undo Ctrl+/ Shift+Tab # undo the last command line change

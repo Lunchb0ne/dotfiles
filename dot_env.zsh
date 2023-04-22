@@ -6,8 +6,8 @@ export HOMEBREW_INSTALL_FROM_API=1 # Use homebrew's api mode
 export ATUIN_NOBIND="true"
 
 # pnpm
-export PNPM_HOME="/Users/lunchb0ne/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+export PNPM_HOME="/Users/$USER/Library/pnpm"
+path+=$PNPM_HOME
 
 # Use `bat` as the man-page viewer.
 # Only do this if bat is installed
