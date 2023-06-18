@@ -1,13 +1,13 @@
 #!/bin/zsh
 # Almost of my environment variables
 export ZSH_COMP_DIR="$HOME/.zsh/comp/"
-export GPG_TTY=$TTY                #Use current TTY for GPG.
+
+export GPG_TTY=$TTY                # Use current TTY for GPG.
 export HOMEBREW_INSTALL_FROM_API=1 # Use homebrew's api mode
 export ATUIN_NOBIND="true"
 
 # pnpm
 export PNPM_HOME="/Users/$USER/Library/pnpm"
-path+=$PNPM_HOME
 
 # Use `bat` as the man-page viewer.
 # Only do this if bat is installed
@@ -30,16 +30,18 @@ export GOPATH=~/go/
 
 # Enrich PATH.
 path=(
-    '~/bin'
+    $HOME/bin
     $path
     $GOPATH/bin
+    $PNPM_HOME
 )
 
 # Enrich FPATH.
-fpath=(
-    $fpath
-    $ZSH_COMP_DIR
-)
+fpath+=( $ZSH_COMP_DIR)
+
+# Make paths unique
+typeset -U path PATH
+typeset -U fpath FPATH
 
 # arg1: the command
 # arg2: the command that we should use to generate completions
