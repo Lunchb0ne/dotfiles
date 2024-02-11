@@ -1,13 +1,7 @@
-#!/bin/zsh
 # Almost of my environment variables
 export ZSH_COMP_DIR="$HOME/.zsh/comp/"
-
 export GPG_TTY=$TTY                # Use current TTY for GPG.
-export HOMEBREW_INSTALL_FROM_API=1 # Use homebrew's api mode
 export ATUIN_NOBIND="true"
-
-# pnpm
-export PNPM_HOME="/Users/$USER/Library/pnpm"
 
 # Use `bat` as the man-page viewer.
 # Only do this if bat is installed
@@ -29,11 +23,11 @@ export SSH_AUTH_SOCK=~/.1password/agent.sock
 export GOPATH=~/go/
 
 # Enrich PATH.
+# Override
 path=(
     $HOME/bin
     $path
     $GOPATH/bin
-    $PNPM_HOME
 )
 
 # Enrich FPATH.

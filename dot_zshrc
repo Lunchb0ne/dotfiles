@@ -1,13 +1,8 @@
 #!/bin/zsh
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
-# Personal Zsh configuration file. It is strongly recommended to keep all
-# shell customization and configuration (including exported environment
-# variables such as PATH) in this file or in files sourced from it.
-#
+# CodeWhisperer pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh"
+
 # Documentation: https://github.com/romkatv/zsh4humans/blob/v5/README.md.
-# Periodic auto-update on Zsh startup: 'ask' or 'no'.
-# You can manually run `z4h update` to update everything.
 zstyle ':z4h:' auto-update 'yes'
 # Ask whether to auto-update this often; has no effect if auto-update is 'no'.
 zstyle ':z4h:' auto-update-days '14'
@@ -23,15 +18,14 @@ zstyle ':z4h:' term-shell-integration 'yes'
 
 # Right-arrow key accepts one character ('partial-accept') from
 # command autosuggestions or the whole thing ('accept')?
-zstyle ':z4h:autosuggestions' forward-char 'accept'
+zstyle ':z4h:autosuggestions' forward-char 'partial-accept'
 
 # Recursively traverse directories when TAB-completing files.
-zstyle ':z4h:fzf-complete' recurse-dirs 'no'
+zstyle ':z4h:fzf-complete' recurse-dirs 'yes'
 
 # Enable ('yes') or disable ('no') automatic teleportation of z4h over
 # SSH when connecting to these hosts.
-zstyle ':z4h:ssh:example-hostname1' enable 'yes'
-zstyle ':z4h:ssh:*.example-hostname2' enable 'no'
+zstyle ':z4h:ssh:*.lunchb0ne.*' enable 'yes'
 # The default value if none of the overrides above match the hostname.
 zstyle ':z4h:ssh:*' enable 'no'
 
@@ -49,7 +43,6 @@ z4h install conda-incubator/conda-zsh-completion || return # 🐍 completions fo
 z4h install clarketm/zsh-completions || return             # a compliation of a lot of zsh completions
 z4h install MichaelAquilina/zsh-you-should-use || return   # reminds me about aliases I've setup
 z4h install mroth/evalcache || return                      # evalcache too
-z4h install cowboyd/zsh-volta || return                    # volta toolchain
 z4h install ellie/atuin || return                          # atuin shell history
 
 # Install or update core components (fzf, zsh-autosuggestions, etc.) and
@@ -58,30 +51,8 @@ z4h install ellie/atuin || return                          # atuin shell history
 # perform network I/O must be done above. Everything else is best done below.
 z4h init || return
 
-# tea hook for zsh
-source <(tea --magic=zsh)
 # Source additional local environment files.
 z4h source ~/.env.zsh
-
-# Load Anaconda
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('$HOMEBREW_PREFIX/Caskroom/mambaforge/base/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$HOMEBREW_PREFIX/Caskroom/mambaforge/base/etc/profile.d/conda.sh" ]; then
-        . "$HOMEBREW_PREFIX/Caskroom/mambaforge/base/etc/profile.d/conda.sh"
-    else
-        export PATH="$HOMEBREW_PREFIX/Caskroom/mambaforge/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-if [ -f "$HOMEBREW_PREFIX/Caskroom/mambaforge/base/etc/profile.d/mamba.sh" ]; then
-    . "$HOMEBREW_PREFIX/Caskroom/mambaforge/base/etc/profile.d/mamba.sh"
-fi
-# <<< conda initialize <<<
 
 # Use additional Git repositories pulled in with `z4h install`.
 z4h load ohmyzsh/ohmyzsh/plugins/git          # load git plugin
@@ -93,11 +64,8 @@ z4h load conda-incubator/conda-zsh-completion # load anaconda-completions
 z4h load clarketm/zsh-completions             # load extended completions
 z4h load MichaelAquilina/zsh-you-should-use   # load abbr reminders
 z4h load mroth/evalcache                      # load eval chacher
-z4h load cowboyd/zsh-volta                    # load volta toolchain
 z4h load ohmyzsh/ohmyzsh/plugins/magic-enter  # magic enter plugin
 z4h load ellie/atuin                          # load atuin
-
-[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true # pnpm completions using their modified tabtab
 
 z4h source ~/.alias.zsh  # load aliases
 z4h source ~/.colors.zsh # load custom colors
@@ -117,16 +85,12 @@ setopt no_auto_menu # require an extra TAB press to open the completion menu
 
 # External Loaders
 completion_cacher chezmoi "chezmoi completion zsh"
-completion_cacher railway "railway completion zsh"
-completion_cacher volta "volta completions zsh"
-completion_cacher colima "colima completion zsh"
 completion_cacher docker "docker completion zsh"
-eval "$(github-copilot-cli alias -- "$0")"
 
 # bind atuin search widget to ctrl+r
 bindkey '^r' _atuin_search_widget
 # zoxide support
 _evalcache zoxide init zsh
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+# CodeWhisperer post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh"
