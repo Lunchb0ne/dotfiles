@@ -1,37 +1,41 @@
 # Almost of my environment variables
 export ZSH_COMP_DIR="$HOME/.zsh/comp/"
 export GPG_TTY=$TTY                # Use current TTY for GPG.
-export ATUIN_NOBIND="true"
 
-# Use `bat` as the man-page viewer.
-# Only do this if bat is installed
-if command -v bat >>/dev/null; then
-    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-    export HOMEBREW_BAT=1 # And for Homebrew too.
-fi
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+# NOTE: don't use escape sequences here, fzf-tab will ignore them
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+zstyle ':completion:*' menu no
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+# switch group using `<` and `>`
+zstyle ':fzf-tab:*' switch-group '<' '>'
 
 # Fix cursor sometimes when it gets stuck
 _fix_cursor() {
     echo -ne "\e[3 q"
 }
-add-zsh-hook precmd _fix_cursor
 
 # Use 1pw for ssh agent.
 export SSH_AUTH_SOCK=~/.1password/agent.sock
-
 # Export path for go-lang.
-export GOPATH=~/go/
+export GOPATH=~/go
 
 # Enrich PATH.
-# Override
 path=(
+    /opt/homebrew/bin
     $HOME/bin
     $path
     $GOPATH/bin
 )
 
 # Enrich FPATH.
-fpath+=( $ZSH_COMP_DIR)
+fpath+=($ZSH_COMP_DIR)
 
 # Make paths unique
 typeset -U path PATH

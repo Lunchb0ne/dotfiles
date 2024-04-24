@@ -1,96 +1,154 @@
 #!/bin/zsh
+# lunch's dotfiles
+
 # CodeWhisperer pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh"
 
-# Documentation: https://github.com/romkatv/zsh4humans/blob/v5/README.md.
-zstyle ':z4h:' auto-update 'yes'
-# Ask whether to auto-update this often; has no effect if auto-update is 'no'.
-zstyle ':z4h:' auto-update-days '14'
+# # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# # Initialization code that may require console input (password prompts, [y/n]
+# # confirmations, etc.) must go above this block; everything else may go below.
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
-# Keyboard type: 'mac' or 'pc'.
-zstyle ':z4h:bindkey' keyboard 'mac'
-
-# Don't start tmux.
-zstyle ':z4h:' start-tmux no
-
-# Mark up shell's output with semantic information.
-zstyle ':z4h:' term-shell-integration 'yes'
-
-# Right-arrow key accepts one character ('partial-accept') from
-# command autosuggestions or the whole thing ('accept')?
-zstyle ':z4h:autosuggestions' forward-char 'partial-accept'
-
-# Recursively traverse directories when TAB-completing files.
-zstyle ':z4h:fzf-complete' recurse-dirs 'yes'
-
-# Enable ('yes') or disable ('no') automatic teleportation of z4h over
-# SSH when connecting to these hosts.
-zstyle ':z4h:ssh:*.lunchb0ne.*' enable 'yes'
-# The default value if none of the overrides above match the hostname.
-zstyle ':z4h:ssh:*' enable 'no'
-
-# Send these files over to the remote host when connecting over SSH to the
-# enabled hosts.
-zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh' '~/.colors.zsh' '~/.alias.zsh'
-
-# Clone additional Git repositories from GitHub.
+# Start configuration added by Zim install {{{
 #
-# This doesn't do anything apart from cloning the repository and keeping it
-# up-to-date. Cloned files can be used after `z4h init`. This is just an
-# example. If you don't plan to use Oh My Zsh, delete this line.
-z4h install ohmyzsh/ohmyzsh || return                      # ohmyzsh as i use a few plugins from it
-z4h install conda-incubator/conda-zsh-completion || return # 🐍 completions for conda & mamba
-z4h install clarketm/zsh-completions || return             # a compliation of a lot of zsh completions
-z4h install MichaelAquilina/zsh-you-should-use || return   # reminds me about aliases I've setup
-z4h install mroth/evalcache || return                      # evalcache too
-z4h install ellie/atuin || return                          # atuin shell history
+# User configuration sourced by interactive shells
+#
 
-# Install or update core components (fzf, zsh-autosuggestions, etc.) and
-# initialize Zsh. After this point console I/O is unavailable until Zsh
-# is fully initialized. Everything that requires user interaction or can
-# perform network I/O must be done above. Everything else is best done below.
-z4h init || return
+# environment setup
+source ~/.env.zsh
+source ~/.colors.zsh
 
-# Source additional local environment files.
-z4h source ~/.env.zsh
+# -----------------
+# Zsh configuration
+# -----------------
 
-# Use additional Git repositories pulled in with `z4h install`.
-z4h load ohmyzsh/ohmyzsh/plugins/git          # load git plugin
-z4h load ohmyzsh/ohmyzsh/plugins/golang       # load go-lang plugin
-z4h load ohmyzsh/ohmyzsh/plugins/vscode       # load vscode plugin
-z4h load ohmyzsh/ohmyzsh/plugins/macos        # load macos plugin
-z4h load ohmyzsh/ohmyzsh/plugins/composer     # load composer plugin
-z4h load conda-incubator/conda-zsh-completion # load anaconda-completions
-z4h load clarketm/zsh-completions             # load extended completions
-z4h load MichaelAquilina/zsh-you-should-use   # load abbr reminders
-z4h load mroth/evalcache                      # load eval chacher
-z4h load ohmyzsh/ohmyzsh/plugins/magic-enter  # magic enter plugin
-z4h load ellie/atuin                          # load atuin
+#
+# History
+#
 
-z4h source ~/.alias.zsh  # load aliases
-z4h source ~/.colors.zsh # load custom colors
+# Remove older command from the history if a duplicate is to be added.
+setopt HIST_IGNORE_ALL_DUPS
 
-# Define key bindings.
-z4h bindkey undo Ctrl+/ Shift+Tab # undo the last command line change
-z4h bindkey redo Option+/         # redo the last undone command line change
+#
+# Input/output
+#
 
-z4h bindkey z4h-cd-back Shift+Left     # cd into the previous directory
-z4h bindkey z4h-cd-forward Shift+Right # cd into the next directory
-z4h bindkey z4h-cd-up Shift+Up         # cd into the parent directory
-z4h bindkey z4h-cd-down Shift+Down     # cd into a child directory
+# Set editor default keymap to emacs (`-e`) or vi (`-v`)
+bindkey -e
 
-# Set shell options: http://zsh.sourceforge.net/Doc/Release/Options.html.
-setopt glob_dots    # no special treatment for file names with a leading dot
-setopt no_auto_menu # require an extra TAB press to open the completion menu
+# Prompt for spelling correction of commands.
+setopt CORRECT
 
-# External Loaders
-completion_cacher chezmoi "chezmoi completion zsh"
-completion_cacher docker "docker completion zsh"
+# Customize spelling correction prompt.
+SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 
-# bind atuin search widget to ctrl+r
-bindkey '^r' _atuin_search_widget
-# zoxide support
-_evalcache zoxide init zsh
+# Remove path separator from WORDCHARS.
+WORDCHARS=${WORDCHARS//[\/]}
+
+# -----------------
+# Zim configuration
+# -----------------
+
+# Use degit instead of git as the default tool to install and update modules.
+# zstyle ':zim:zmodule' use 'degit'
+
+# --------------------
+# Module configuration
+# --------------------
+
+#
+# git
+#
+
+# Set a custom prefix for the generated aliases. The default prefix is 'G'.
+#zstyle ':zim:git' aliases-prefix 'g'
+
+#
+# input
+#
+
+# Append `../` to your input for each `.` you type after an initial `..`
+zstyle ':zim:input' double-dot-expand yes
+
+#
+# termtitle
+#
+
+# Set a custom terminal title format using prompt expansion escape sequences.
+# See http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Simple-Prompt-Escapes
+# If none is provided, the default '%n@%m: %~' is used.
+#zstyle ':zim:termtitle' format '%1~'
+
+#
+# zsh-autosuggestions
+#
+
+# Disable automatic widget re-binding on each precmd. This can be set when
+# zsh-users/zsh-autosuggestions is the last module in your ~/.zimrc.
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+
+# Customize the style that the suggestions are shown with.
+# See https://github.com/zsh-users/zsh-autosuggestions/blob/master/README.md#suggestion-highlight-style
+#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
+
+#
+# zsh-syntax-highlighting
+#
+
+# Set what highlighters will be used.
+# See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor line)
+
+# Customize the main highlighter styles.
+# See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md#how-to-tweak-it
+#typeset -A ZSH_HIGHLIGHT_STYLES
+#ZSH_HIGHLIGHT_STYLES[comment]='fg=242'
+
+# ------------------
+# Initialize modules
+# ------------------
+
+ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
+# Download zimfw plugin manager if missing.
+if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
+  if (( ${+commands[curl]} )); then
+    curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
+        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+  else
+    mkdir -p ${ZIM_HOME} && wget -nv -O ${ZIM_HOME}/zimfw.zsh \
+        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+  fi
+fi
+# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
+  source ${ZIM_HOME}/zimfw.zsh init -q
+fi
+# Initialize modules.
+source ${ZIM_HOME}/init.zsh
+
+# ------------------------------
+# Post-init module configuration
+# ------------------------------
+
+# Initialize env, colors and aliases
+source ~/.alias.zsh
+
+#
+# zsh-history-substring-search
+#
+
+zmodload -F zsh/terminfo +p:terminfo
+# Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
+for key ('^[[A' '^P' ${terminfo[kcuu1]}) bindkey ${key} history-substring-search-up
+for key ('^[[B' '^N' ${terminfo[kcud1]}) bindkey ${key} history-substring-search-down
+for key ('k') bindkey -M vicmd ${key} history-substring-search-up
+for key ('j') bindkey -M vicmd ${key} history-substring-search-down
+unset key
+# }}} End configuration added by Zim install
+
+add-zsh-hook precmd _fix_cursor
 
 # CodeWhisperer post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh"

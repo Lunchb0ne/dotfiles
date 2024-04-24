@@ -11,9 +11,6 @@ function rq() {
 }
 compdef _files rq
 
-# Define named directories: ~w <=> Windows home directory on WSL.
-[[ -z $z4h_win_home ]] || hash -d w=$z4h_win_home
-
 # Define aliases.
 alias tree='tree -a -I .git'
 
@@ -31,5 +28,11 @@ if command -v bat >>/dev/null; then
     alias cat='bat'
 fi
 
-alias python='python3' # Python alias.
-alias pip='pip3'       # Pip alias.
+alias krak='/opt/homebrew/bin/gk'
+
+# Use `bat` as the man-page viewer.
+# Only do this if bat is installed
+if command -v bat >>/dev/null; then
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+    export HOMEBREW_BAT=1 # And for Homebrew too.
+fi
