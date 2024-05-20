@@ -54,7 +54,6 @@ zmodule fzf
 # chezmoi for dotfiles
 zmodule joke/zim-chezmoi
 
-
 #
 # Completion
 #

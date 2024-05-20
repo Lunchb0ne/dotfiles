@@ -19,7 +19,7 @@ if command -v eza >>/dev/null; then
     alias ls_="$(where ls)" # Old ls command for compatibility.
     alias ls='eza'
     # Add flags to existing aliases.
-    alias ls="${aliases[ls]:-ls} --icons"
+    alias ls="${aliases[ls]:-ls} --icons --color"
 fi
 
 # Check if bat is installed, then alias cat to bat.
@@ -27,8 +27,6 @@ if command -v bat >>/dev/null; then
     alias cat_="$(where cat)" # Old cat for compat.
     alias cat='bat'
 fi
-
-alias krak='/opt/homebrew/bin/gk'
 
 # Use `bat` as the man-page viewer.
 # Only do this if bat is installed
