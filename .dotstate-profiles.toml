@@ -1,0 +1,16 @@
+[common]
+synced_files = []
+
+[[profiles]]
+name = "default"
+synced_files = [
+    ".config/bat",
+    ".config/nvim",
+    ".config/wezterm",
+    ".p10k.zsh",
+    ".ssh/config",
+    ".zprofile",
+    ".zshenv",
+    ".zshrc",
+]
+packages = []
