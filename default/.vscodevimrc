@@ -1,0 +1,19 @@
+" Make sure this is enabled in settings.json:
+" "vim.camelCaseMotion.enable": true
+
+let mapleader = " "
+let g:camelcasemotion_key = '<leader>'
+
+" Remap normal motions to camel motions
+nnoremap <silent> w <leader>w
+nnoremap <silent> b <leader>b
+nnoremap <silent> e <leader>e
+nnoremap <silent> ge <leader>ge
+
+" Optional: operator-pending/visual text objects without <Plug>
+onoremap <silent> iw i<leader>w
+xnoremap <silent> iw i<leader>w
+onoremap <silent> ib i<leader>b
+xnoremap <silent> ib i<leader>b
+onoremap <silent> ie i<leader>e
+xnoremap <silent> ie i<leader>e

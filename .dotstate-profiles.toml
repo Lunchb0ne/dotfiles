@@ -1,18 +1,407 @@
 version = 1
 
 [common]
-synced_files = []
+synced_files = [
+    ".config/bat",
+    ".gitconfig",
+    ".ssh/config",
+]
 
 [[profiles]]
 name = "default"
 synced_files = [
-    ".config/bat",
+    ".bash_profile",
+    ".bashrc",
     ".config/nvim",
     ".config/wezterm",
     ".p10k.zsh",
-    ".ssh/config",
+    ".profile",
+    ".vscodevimrc",
     ".zprofile",
     ".zshenv",
     ".zshrc",
 ]
-packages = []
+
+[[profiles.packages]]
+name = "witr"
+manager = "brew"
+package_name = "witr"
+binary_name = "witr"
+
+[[profiles.packages]]
+name = "difftastic"
+manager = "brew"
+package_name = "difftastic"
+binary_name = "difftastic"
+
+[[profiles.packages]]
+name = "imagemagick"
+manager = "brew"
+package_name = "imagemagick"
+binary_name = "imagemagick"
+
+[[profiles.packages]]
+name = "chezmoi"
+manager = "brew"
+package_name = "chezmoi"
+binary_name = "chezmoi"
+
+[[profiles.packages]]
+name = "wget"
+manager = "brew"
+package_name = "wget"
+binary_name = "wget"
+
+[[profiles.packages]]
+name = "romkatv/gitstatus/gitstatus"
+manager = "brew"
+package_name = "romkatv/gitstatus/gitstatus"
+binary_name = "romkatv/gitstatus/gitstatus"
+
+[[profiles.packages]]
+name = "eza"
+manager = "brew"
+package_name = "eza"
+binary_name = "eza"
+
+[[profiles.packages]]
+name = "bottom"
+manager = "brew"
+package_name = "bottom"
+binary_name = "bottom"
+
+[[profiles.packages]]
+name = "fastfetch"
+manager = "brew"
+package_name = "fastfetch"
+binary_name = "fastfetch"
+
+[[profiles.packages]]
+name = "lua-language-server"
+manager = "brew"
+package_name = "lua-language-server"
+binary_name = "lua-language-server"
+
+[[profiles.packages]]
+name = "mcfly"
+manager = "brew"
+package_name = "mcfly"
+binary_name = "mcfly"
+
+[[profiles.packages]]
+name = "tobi/try/try"
+manager = "brew"
+package_name = "tobi/try/try"
+binary_name = "tobi/try/try"
+
+[[profiles.packages]]
+name = "lazygit"
+manager = "brew"
+package_name = "lazygit"
+binary_name = "lazygit"
+
+[[profiles.packages]]
+name = "bat"
+manager = "brew"
+package_name = "bat"
+binary_name = "bat"
+
+[[profiles.packages]]
+name = "go"
+manager = "brew"
+package_name = "go"
+binary_name = "go"
+
+[[profiles.packages]]
+name = "onefetch"
+manager = "brew"
+package_name = "onefetch"
+binary_name = "onefetch"
+
+[[profiles.packages]]
+name = "libmagic"
+manager = "brew"
+package_name = "libmagic"
+binary_name = "libmagic"
+
+[[profiles.packages]]
+name = "curl"
+manager = "brew"
+package_name = "curl"
+binary_name = "curl"
+
+[[profiles.packages]]
+name = "howdoi"
+manager = "brew"
+package_name = "howdoi"
+binary_name = "howdoi"
+
+[[profiles.packages]]
+name = "gnupg"
+manager = "brew"
+package_name = "gnupg"
+binary_name = "gnupg"
+
+[[profiles.packages]]
+name = "mole"
+manager = "brew"
+package_name = "mole"
+binary_name = "mole"
+
+[[profiles.packages]]
+name = "gemini-cli"
+manager = "brew"
+package_name = "gemini-cli"
+binary_name = "gemini-cli"
+
+[[profiles.packages]]
+name = "libpq"
+manager = "brew"
+package_name = "libpq"
+binary_name = "libpq"
+
+[[profiles.packages]]
+name = "vivid"
+manager = "brew"
+package_name = "vivid"
+binary_name = "vivid"
+
+[[profiles.packages]]
+name = "aria2"
+manager = "brew"
+package_name = "aria2"
+binary_name = "aria2"
+
+[[profiles.packages]]
+name = "ripgrep"
+manager = "brew"
+package_name = "ripgrep"
+binary_name = "ripgrep"
+
+[[profiles.packages]]
+name = "fd"
+manager = "brew"
+package_name = "fd"
+binary_name = "fd"
+
+[[profiles.packages]]
+name = "git-lfs"
+manager = "brew"
+package_name = "git-lfs"
+binary_name = "git-lfs"
+
+[[profiles.packages]]
+name = "progress"
+manager = "brew"
+package_name = "progress"
+binary_name = "progress"
+
+[[profiles.packages]]
+name = "pkgconf"
+manager = "brew"
+package_name = "pkgconf"
+binary_name = "pkgconf"
+
+[[profiles.packages]]
+name = "pipx"
+manager = "brew"
+package_name = "pipx"
+binary_name = "pipx"
+
+[[profiles.packages]]
+name = "fzf"
+manager = "brew"
+package_name = "fzf"
+binary_name = "fzf"
+
+[[profiles.packages]]
+name = "sevenzip"
+manager = "brew"
+package_name = "sevenzip"
+binary_name = "sevenzip"
+
+[[profiles.packages]]
+name = "tokei"
+manager = "brew"
+package_name = "tokei"
+binary_name = "tokei"
+
+[[profiles.packages]]
+name = "ncdu"
+manager = "brew"
+package_name = "ncdu"
+binary_name = "ncdu"
+
+[[profiles.packages]]
+name = "cbonsai"
+manager = "brew"
+package_name = "cbonsai"
+binary_name = "cbonsai"
+
+[[profiles.packages]]
+name = "shellcheck"
+manager = "brew"
+package_name = "shellcheck"
+binary_name = "shellcheck"
+
+[[profiles.packages]]
+name = "imagemagick-full"
+manager = "brew"
+package_name = "imagemagick-full"
+binary_name = "imagemagick-full"
+
+[[profiles.packages]]
+name = "serkanyersen/dotstate/dotstate"
+manager = "brew"
+package_name = "serkanyersen/dotstate/dotstate"
+binary_name = "serkanyersen/dotstate/dotstate"
+
+[[profiles.packages]]
+name = "zsh"
+manager = "brew"
+package_name = "zsh"
+binary_name = "zsh"
+
+[[profiles.packages]]
+name = "freetds"
+manager = "brew"
+package_name = "freetds"
+binary_name = "freetds"
+
+[[profiles.packages]]
+name = "zoxide"
+manager = "brew"
+package_name = "zoxide"
+binary_name = "zoxide"
+
+[[profiles.packages]]
+name = "fish"
+manager = "brew"
+package_name = "fish"
+binary_name = "fish"
+
+[[profiles.packages]]
+name = "git-delta"
+manager = "brew"
+package_name = "git-delta"
+binary_name = "git-delta"
+
+[[profiles.packages]]
+name = "trash"
+manager = "brew"
+package_name = "trash"
+binary_name = "trash"
+
+[[profiles.packages]]
+name = "mas"
+manager = "brew"
+package_name = "mas"
+binary_name = "mas"
+
+[[profiles.packages]]
+name = "tmux"
+manager = "brew"
+package_name = "tmux"
+binary_name = "tmux"
+
+[[profiles.packages]]
+name = "atuin"
+manager = "brew"
+package_name = "atuin"
+binary_name = "atuin"
+
+[[profiles.packages]]
+name = "biome"
+manager = "brew"
+package_name = "biome"
+binary_name = "biome"
+
+[[profiles.packages]]
+name = "btop"
+manager = "brew"
+package_name = "btop"
+binary_name = "btop"
+
+[[profiles.packages]]
+name = "git"
+manager = "brew"
+package_name = "git"
+binary_name = "git"
+
+[[profiles.packages]]
+name = "bash"
+manager = "brew"
+package_name = "bash"
+binary_name = "bash"
+
+[[profiles.packages]]
+name = "gromgit/brewtils/taproom"
+manager = "brew"
+package_name = "gromgit/brewtils/taproom"
+binary_name = "gromgit/brewtils/taproom"
+
+[[profiles.packages]]
+name = "ast-grep"
+manager = "brew"
+package_name = "ast-grep"
+binary_name = "ast-grep"
+
+[[profiles.packages]]
+name = "stow"
+manager = "brew"
+package_name = "stow"
+binary_name = "stow"
+
+[[profiles.packages]]
+name = "mise"
+manager = "brew"
+package_name = "mise"
+binary_name = "mise"
+
+[[profiles.packages]]
+name = "ninja"
+manager = "brew"
+package_name = "ninja"
+binary_name = "ninja"
+
+[[profiles.packages]]
+name = "jq"
+manager = "brew"
+package_name = "jq"
+binary_name = "jq"
+
+[[profiles.packages]]
+name = "neovim"
+manager = "brew"
+package_name = "neovim"
+binary_name = "neovim"
+
+[[profiles.packages]]
+name = "watchexec"
+manager = "brew"
+package_name = "watchexec"
+binary_name = "watchexec"
+
+[[profiles.packages]]
+name = "yt-dlp"
+manager = "brew"
+package_name = "yt-dlp"
+binary_name = "yt-dlp"
+
+[[profiles.packages]]
+name = "docker"
+manager = "brew"
+package_name = "docker"
+binary_name = "docker"
+
+[[profiles.packages]]
+name = "gcc"
+manager = "brew"
+package_name = "gcc"
+binary_name = "gcc"
+
+[[profiles.packages]]
+name = "coreutils"
+manager = "brew"
+package_name = "coreutils"
+binary_name = "coreutils"
