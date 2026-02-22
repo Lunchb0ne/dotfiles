@@ -10,9 +10,11 @@ synced_files = [
 [[profiles]]
 name = "default"
 synced_files = [
+    ".alias.zsh",
     ".aliasrc",
     ".bash_profile",
     ".bashrc",
+    ".colors.zsh",
     ".config/nvim",
     ".config/wezterm",
     ".env.zsh",
