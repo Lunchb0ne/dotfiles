@@ -33,9 +33,10 @@ zmodule atuinsh/atuin
 zmodule duration-info
 # Exposes git repository status information to prompts, used by asciiship.
 zmodule git-info
-# zunder?
+
+# p10k block
 zmodule romkatv/gitstatus
-zmodule warbacon/zunder-prompt
+zmodule romkatv/powerlevel10k
 
 #
 # Things I use
@@ -68,6 +69,8 @@ zmodule completion
 # Modules that must be initialized last
 #
 
+# pnpm completions
+zmodule g-plane/pnpm-shell-completion --on-pull './zplug.zsh'
 # Fzf Tab completion
 zmodule Aloxaf/fzf-tab
 # Fish-like syntax highlighting for Zsh.

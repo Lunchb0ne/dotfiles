@@ -13,6 +13,7 @@ compdef _files rq
 
 # Define aliases.
 alias tree='tree -a -I .git'
+alias rm='trash $@'
 
 # Check if exa is installed, to alias ls to lsd.
 if command -v eza >>/dev/null; then
