@@ -1,20 +1,14 @@
-# This file is sourced by interactive shells.
-#!/bin/zsh
-
 # Powerlevel10k instant prompt. Should stay at the top of ~/.zshrc.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# lunch's dotfiles
 # Start configuration added by Zim install {{{
 #
 # User configuration sourced by interactive shells
 #
-
-# Amazon Q pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
-
+# Extra paths and other things in the environment
+source ~/.env.zsh
 
 # -----------------
 # Zsh configuration
@@ -22,16 +16,14 @@ fi
 
 #
 # History
-#
-
-# Remove older command from the history if a duplicate is to be added.
 setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_SAVE_NO_DUPS
 
-#
-# Input/output
-#
+# Globbing
+setopt GLOB_DOTS
 
-# Prompt for spelling correction of commands.
+# Correction
 setopt CORRECT
 
 # Customize spelling correction prompt.
@@ -84,7 +76,7 @@ ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
 # Customize the style that the suggestions are shown with.
 # See https://github.com/zsh-users/zsh-autosuggestions/blob/master/README.md#suggestion-highlight-style
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
 
 #
 # zsh-syntax-highlighting
@@ -125,12 +117,13 @@ source ${ZIM_HOME}/init.zsh
 # Post-init module configuration
 # ------------------------------
 
-# Initialize env, colors and aliases
-
-# environment setup
-source ~/.env.zsh
-source ~/.colors.zsh
+# Adding stuff to env and path, needs to be sourced after zimfw for fzf-tab.
+# Initialize colors and aliases
 source ~/.alias.zsh
+source ~/.style.zsh
+
+# iterm2_shell_integration
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 #
 # zsh-history-substring-search
@@ -147,12 +140,5 @@ unset key
 
 add-zsh-hook precmd _fix_cursor
 
-# Q post block. Keep at the bottom of this file.
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# Amazon Q post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"

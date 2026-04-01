@@ -13,14 +13,20 @@ compdef _files rq
 
 # Define aliases.
 alias tree='tree -a -I .git'
-alias rm='trash $@'
+alias rm='trash'
 
-# Check if exa is installed, to alias ls to lsd.
+# Check if eza is installed, to alias ls.
 if command -v eza >>/dev/null; then
     alias ls_="$(where ls)" # Old ls command for compatibility.
-    alias ls='eza'
-    # Add flags to existing aliases.
-    alias ls="${aliases[ls]:-ls} --icons --color"
+    alias ls='eza --icons --color --git --group-directories-first'
+    alias ll='ls -l'
+    alias la='ls -a'
+    alias l='ll -a'
+    alias lr='ll -T'
+    alias lx='ll -sextension'
+    alias lk='ll -ssize'
+    alias lt='ll -smodified'
+    alias lc='ll -schanged'
 fi
 
 # Check if bat is installed, then alias cat to bat.

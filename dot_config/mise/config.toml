@@ -1,19 +1,15 @@
 [tools]
-node = ["latest", "22"]
+node = ["latest", "lts"]
 bun = ["latest"]
-python = ["3.14", "3"]
+python = ["3.13", "3"]
 usage = "latest"
 uv = "latest"
-"npm:ocx" = "latest"
 
 [settings]
 experimental = true
 
 [settings.pipx]
 uvx = true
-
-[settings.npm]
-bun = true
 
 [settings.python]
 uv_venv_auto = true

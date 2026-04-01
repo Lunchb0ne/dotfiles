@@ -1,0 +1,21 @@
+[user]
+	email = abhishek.rbg@gmail.com
+	name = Abhishek Aryan
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPdN+mlLgmPXPWI4SoNDWfHxXKLLhcQnBdvjVWDx+kLy
+[init]
+	defaultBranch = main
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[diff]
+	external = difft
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[pull]
+	rebase = true

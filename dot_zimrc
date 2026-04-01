@@ -20,8 +20,8 @@ zmodule termtitle
 zmodule utility
 # Add in mise needs to be early
 zmodule joke/zim-mise
-# k
-zmodule supercrabtree/k
+# homebrew for macos
+zmodule homebrew
 # atuin
 zmodule atuinsh/atuin
 
@@ -32,11 +32,10 @@ zmodule atuinsh/atuin
 # Exposes to prompts how long the last command took to execute, used by asciiship.
 zmodule duration-info
 # Exposes git repository status information to prompts, used by asciiship.
-zmodule git-info
+# zmodule git-info
 
-# p10k block
-zmodule romkatv/gitstatus
-zmodule romkatv/powerlevel10k
+# p10k block (bundles gitstatus internally)
+zmodule quantumnic/powerlevel10k --use degit
 
 #
 # Things I use
@@ -44,12 +43,10 @@ zmodule romkatv/powerlevel10k
 
 # zoxide support
 zmodule kiesman99/zim-zoxide
-# homebrew for macos
-zmodule homebrew
 # easy archive management
 zmodule archive
-# exa for ls
-zmodule exa
+# eza for ls
+# zmodule exa  # Removed — aliases managed in .alias.zsh for full control
 # fzf for fuzzy finding
 zmodule fzf
 # chezmoi for dotfiles
@@ -74,9 +71,8 @@ zmodule g-plane/pnpm-shell-completion --on-pull './zplug.zsh'
 # Fzf Tab completion
 zmodule Aloxaf/fzf-tab
 # Fish-like syntax highlighting for Zsh.
-zmodule zsh-users/zsh-syntax-highlighting
+zmodule zdharma-continuum/fast-syntax-highlighting 
 # Fish-like history search (up arrow) for Zsh.
-# zsh-users/zsh-history-substring-search must be sourced after zsh-users/zsh-syntax-highlighting
 zmodule zsh-users/zsh-history-substring-search
 # Fish-like autosuggestions for Zsh.
 zmodule zsh-users/zsh-autosuggestions

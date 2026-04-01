@@ -1,25 +1,8 @@
+#!/bin/zsh
+
 # Almost of my environment variables
 export ZSH_COMP_DIR="$HOME/.zsh/comp/"
-export GPG_TTY=$TTY                # Use current TTY for GPG.
-
-# disable sort when completing `git checkout`
-zstyle ':completion:*:git-checkout:*' sort false
-# set descriptions format to enable group support
-# NOTE: don't use escape sequences here, fzf-tab will ignore them
-zstyle ':completion:*:descriptions' format '[%d]'
-# set list-colors to enable filename colorizing
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
-zstyle ':completion:*' menu no
-# preview directory's content with eza when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-# switch group using `<` and `>`
-zstyle ':fzf-tab:*' switch-group '<' '>'
-
-# Fix cursor sometimes when it gets stuck
-_fix_cursor() {
-    echo -ne "\e[3 q"
-}
+export GPG_TTY=$TTY
 
 # Use 1pw for ssh agent.
 export SSH_AUTH_SOCK=~/.1password/agent.sock
@@ -28,10 +11,11 @@ export GOPATH=~/go
 
 # Enrich PATH.
 path=(
-    /opt/homebrew/bin
-    $HOME/bin
+    "$HOME/bin"
+    "/opt/homebrew/bin"
+    "$HOME/.antigravity/antigravity/bin"
     $path
-    $GOPATH/bin
+    "$GOPATH/bin"
 )
 
 # Enrich FPATH.
@@ -40,6 +24,15 @@ fpath+=($ZSH_COMP_DIR)
 # Make paths unique
 typeset -U path PATH
 typeset -U fpath FPATH
+
+# LS_COLORS via vivid (cached — regenerates when vivid binary updates)
+_ls_colors_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/ls_colors"
+if [[ ! -f "$_ls_colors_cache" || "$(command -v vivid)" -nt "$_ls_colors_cache" ]]; then
+    mkdir -p "${_ls_colors_cache:h}"
+    vivid generate catppuccin-mocha > "$_ls_colors_cache"
+fi
+export LS_COLORS="$(<$_ls_colors_cache)"
+unset _ls_colors_cache
 
 # arg1: the command
 # arg2: the command that we should use to generate completions
