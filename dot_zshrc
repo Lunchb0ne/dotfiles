@@ -40,17 +40,13 @@ zstyle ':z4h:ssh:*'                   enable 'no'
 
 # Send these files over to the remote host when connecting over SSH to the
 # enabled hosts.
-zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh'
+zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh' '~/.alias.zsh'
 
 # Clone additional Git repositories from GitHub.
-#
-# This doesn't do anything apart from cloning the repository and keeping it
-# up-to-date. Cloned files can be used after `z4h init`. This is just an
-# example. If you don't plan to use Oh My Zsh, delete this line.
 z4h install ajeetdsouza/zoxide || return
 z4h install wintermi/zsh-mise || return
-z4h install wintermi/zsh-mise || return
 z4h install z-shell/zsh-eza || return
+z4h install ellie/atuin || return               # atuin shell history
 
 # Install or update core components (fzf, zsh-autosuggestions, etc.) and
 # initialize Zsh. After this point console I/O is unavailable until Zsh
@@ -64,15 +60,27 @@ path=(~/bin $path)
 # Export environment variables.
 export GPG_TTY=$TTY
 
-# Source additional local files if they exist.
+# Source local files.
 z4h source ~/.env.zsh
-z4h source /usr/share/cachyos-zsh-config/cachyos-config.zsh
+z4h source ~/.alias.zsh
 
 # Use additional Git repositories pulled in with `z4h install`.
-z4h source ajeetdsouza/zoxide/zoxide.plugin.zsh   # load the zoxide plugin
-z4h source wintermi/zsh-mise/zsh-mise.plugin.zsh  # load the zsh-mise plugin
-z4h source z-shell/zsh-eza/zsh-eza.plugin.zsh         # load the zsh-eza plugin
+z4h source ajeetdsouza/zoxide/zoxide.plugin.zsh   # zoxide
 
+# Initialize zoxide.
+if command -v zoxide >>/dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+z4h source wintermi/zsh-mise/zsh-mise.plugin.zsh  # mise
+z4h source z-shell/zsh-eza/zsh-eza.plugin.zsh     # eza
+
+# Initialize atuin (history sync).
+if command -v atuin >>/dev/null; then
+  eval "$(atuin init zsh)"
+fi
+
+# Define named directories: ~w <=> Windows home directory on WSL.
+[[ -z $z4h_win_home ]] || hash -d w=$z4h_win_home
 
 # Define key bindings.
 z4h bindkey undo Ctrl+/   Shift+Tab  # undo the last command line change
@@ -83,23 +91,12 @@ z4h bindkey z4h-cd-forward Shift+Right  # cd into the next directory
 z4h bindkey z4h-cd-up      Shift+Up     # cd into the parent directory
 z4h bindkey z4h-cd-down    Shift+Down   # cd into a child directory
 
+# Atuin history search.
+bindkey '^r' _atuin_search_widget
+
 # Autoload functions.
 autoload -Uz zmv
-
-# Define functions and completions
-function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
-compdef _directories md
-
-# Define named directories: ~w <=> Windows home directory on WSL.
-[[ -z $z4h_win_home ]] || hash -d w=$z4h_win_home
-
-# Define aliases.
-alias tree='tree -a -I .git'
-
-# Add flags to existing aliases.
-alias ls="${aliases[ls]:-ls} -A"
 
 # Set shell options: http://zsh.sourceforge.net/Doc/Release/Options.html.
 setopt glob_dots     # no special treatment for file names with a leading dot
 setopt no_auto_menu  # require an extra TAB press to open the completion menu
-

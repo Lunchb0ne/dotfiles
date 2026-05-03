@@ -1,9 +1,10 @@
 # Aliases and short functions.
 
+function mkcd() { mkdir -p -- "$@" && cd -- "$_"; }
 function md() {
     [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1"
 }
-compdef _directories md
+compdef _directories md mkcd
 
 # ---------- eza / ls ----------
 alias tree='tree -a -I .git'
