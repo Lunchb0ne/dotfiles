@@ -1,0 +1,49 @@
+// Opacity: file managers
+window-rule {
+    match app-id="thunar"
+    opacity 0.92
+}
+window-rule {
+    match app-id="nemo"
+    opacity 0.92
+}
+
+// Opacity: chat / messaging
+window-rule {
+    match app-id="discord"
+    opacity 0.96
+}
+window-rule {
+    match app-id="armcord"
+    opacity 0.96
+}
+window-rule {
+    match app-id="webcord"
+    opacity 0.96
+}
+window-rule {
+    match title="QQ"
+    opacity 0.95
+}
+window-rule {
+    match title="Telegram"
+    opacity 0.95
+}
+window-rule {
+    match title="NetEase Cloud Music Gtk4"
+    opacity 0.95
+}
+
+// Float media players at fixed dimensions
+window-rule {
+    match title="imv"
+    open-floating true
+    default-column-width { fixed 960; }
+    default-window-height { fixed 540; }
+}
+window-rule {
+    match title="mpv"
+    open-floating true
+    default-column-width { fixed 960; }
+    default-window-height { fixed 540; }
+}

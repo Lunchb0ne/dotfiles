@@ -1,0 +1,19 @@
+# repo-only files, not dotfiles
+AGENTS.md
+.vscode/
+README.md
+
+# Matugen auto-generated
+.config/niri/colors.kdl
+
+# DMS auto-generated — overwritten on restart
+.config/niri/dms/colors.kdl
+.config/niri/dms/layout.kdl
+.config/niri/dms/alttab.kdl
+.config/niri/dms/cursor.kdl
+.config/niri/dms/outputs.kdl
+.config/niri/dms/wpblur.kdl
+
+
+# DMS auto-generated
+.config/DankMaterialShell/
