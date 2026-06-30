@@ -7,9 +7,10 @@ uv = "latest"
 
 [settings]
 experimental = true
+auto_install = true
+
+[settings.npm]
+package_manager = "bun"
 
 [settings.pipx]
 uvx = true
-
-[settings.python]
-uv_venv_auto = true
