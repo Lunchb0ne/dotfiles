@@ -35,7 +35,7 @@ zmodule duration-info
 # zmodule git-info
 
 # p10k block (bundles gitstatus internally)
-zmodule quantumnic/powerlevel10k --use degit
+zmodule romkatv/powerlevel10k --use degit
 
 #
 # Things I use
