@@ -8,7 +8,7 @@ compdef _directories md mkcd
 
 # ---------- eza / ls ----------
 alias tree='tree -a -I .git'
-alias eza='eza --icons=always --group-directories-first --header --git --time-style=long-iso'
+alias eza='eza --icons=always --group-directories-first --git --time-style=relative'
 alias ls="${aliases[ls]:-ls} -A"
 
 # ---------- bat / cat ----------

@@ -2,6 +2,9 @@
 export ZSH_COMP_DIR="$HOME/.zsh/comp/"
 export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
 
+# Override zsh-eza plugin defaults to match our eza alias.
+export _EZA_PARAMS=(--icons=always --group-directories-first --git --time-style=relative --color-scale=all)
+
 # Better man-page colors.
 export LESS_TERMCAP_md="$(tput bold 2>/dev/null; tput setaf 2 2>/dev/null)"
 export LESS_TERMCAP_me="$(tput sgr0 2>/dev/null)"
