@@ -1,0 +1,12 @@
+[tools]
+aube = "latest"
+node = "latest"
+"npm:opensrc" = "latest"
+usage = "latest"
+uv = "latest"
+vivid = "latest"
+
+[settings]
+npm.package_manager = "aube"
+pipx.uvx = true
+minimum_release_age_excludes = ["claude-code"]
