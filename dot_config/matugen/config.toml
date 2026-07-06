@@ -1,0 +1,9 @@
+[config]
+
+[templates.pi]
+input_path = '/home/lunch/.config/matugen/dms/templates/pi.json'
+output_path = '/home/lunch/.omp/agent/themes/dms.json'
+
+[templates.eza]
+input_path = '/home/lunch/.config/matugen/dms/templates/eza-theme.conf'
+output_path = '/home/lunch/.config/eza/theme.yml'
