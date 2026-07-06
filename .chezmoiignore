@@ -18,3 +18,6 @@ README.md
 
 # DMS auto-generated
 .config/DankMaterialShell/
+
+# lazy.nvim lockfile, regenerated locally, too noisy to track
+.config/nvim/lazy-lock.json
