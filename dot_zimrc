@@ -22,17 +22,12 @@ zmodule utility
 zmodule joke/zim-mise
 # homebrew for macos
 zmodule homebrew
-# atuin
-zmodule atuinsh/atuin
+# fzf for fuzzy finding
+zmodule fzf
 
 #
 # Prompt
 #
-
-# Exposes to prompts how long the last command took to execute, used by asciiship.
-zmodule duration-info
-# Exposes git repository status information to prompts, used by asciiship.
-# zmodule git-info
 
 # p10k block (bundles gitstatus internally)
 zmodule romkatv/powerlevel10k --use degit
@@ -45,12 +40,14 @@ zmodule romkatv/powerlevel10k --use degit
 zmodule kiesman99/zim-zoxide
 # easy archive management
 zmodule archive
-# eza for ls
-# zmodule exa  # Removed — aliases managed in .alias.zsh for full control
-# fzf for fuzzy finding
-zmodule fzf
 # chezmoi for dotfiles
 zmodule joke/zim-chezmoi
+
+zmodule morhekil/cdoq
+
+zmodule mingmxren/zim-atuin
+zmodule rektide/zim-atuin-session
+
 
 #
 # Completion
@@ -58,6 +55,7 @@ zmodule joke/zim-chezmoi
 
 # Additional completion definitions for Zsh.
 zmodule zsh-users/zsh-completions --fpath src
+
 # Enables and configures smart and extensive tab completion.
 # completion must be sourced after all modules that add completion definitions.
 zmodule completion
@@ -66,14 +64,12 @@ zmodule completion
 # Modules that must be initialized last
 #
 
-# pnpm completions
-zmodule g-plane/pnpm-shell-completion --on-pull './zplug.zsh'
 # Fzf Tab completion
 zmodule Aloxaf/fzf-tab
+
 # Fish-like syntax highlighting for Zsh.
 zmodule zdharma-continuum/fast-syntax-highlighting 
 # Fish-like history search (up arrow) for Zsh.
 zmodule zsh-users/zsh-history-substring-search
 # Fish-like autosuggestions for Zsh.
 zmodule zsh-users/zsh-autosuggestions
-# }}} End configuration added by Zim install
