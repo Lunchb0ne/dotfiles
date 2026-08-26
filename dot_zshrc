@@ -70,8 +70,8 @@ zstyle ':zim:input' double-dot-expand yes
 # zsh-autosuggestions
 #
 
-# Disable automatic widget re-binding on each precmd. This can be set when
-# zsh-users/zsh-autosuggestions is the last module in your ~/.zimrc.
+# Disable automatic widget re-binding on each precmd. Keep this only while no
+# later startup code wraps its widgets; rebind manually if that changes.
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
 # Customize the style that the suggestions are shown with.
@@ -117,8 +117,8 @@ source ${ZIM_HOME}/init.zsh
 # Post-init module configuration
 # ------------------------------
 
-# Adding stuff to env and path, needs to be sourced after zimfw for fzf-tab.
-# Initialize colors and aliases
+# Post-init setup. `fpath` is configured above so Zim's completion module sees
+# custom definitions. Aliases require compdef; styles override module defaults.
 source ~/.alias.zsh
 source ~/.style.zsh
 
