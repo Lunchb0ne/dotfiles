@@ -1,0 +1,138 @@
+# Pierre Dark colors for eza.
+filekinds:
+  normal:
+    foreground: "#fafafa"
+  directory:
+    foreground: "#009fff"
+    is_bold: true
+  symlink:
+    foreground: "#08c0ef"
+    is_italic: true
+  pipe:
+    foreground: "#e130ac"
+  block_device:
+    foreground: "#0dbe4e"
+    is_bold: true
+  char_device:
+    foreground: "#0dbe4e"
+    is_bold: true
+  socket:
+    foreground: "#e130ac"
+    is_bold: true
+  special:
+    foreground: "#ffca00"
+  executable:
+    foreground: "#ffca00"
+    is_bold: true
+  mount_point:
+    foreground: "#9d6afb"
+    is_bold: true
+
+file_type:
+  image:
+    foreground: "#e130ac"
+  video:
+    foreground: "#d568ea"
+  music:
+    foreground: "#08c0ef"
+  crypto:
+    foreground: "#86c427"
+  document:
+    foreground: "#5ecc71"
+  compressed:
+    foreground: "#ff2e3f"
+  temp:
+    foreground: "#737373"
+    is_dimmed: true
+  compiled:
+    foreground: "#ffca00"
+  build:
+    foreground: "#ffca00"
+    is_underline: true
+  source:
+    foreground: "#ffd452"
+
+git:
+  new:
+    foreground: "#07c480"
+  modified:
+    foreground: "#009fff"
+  deleted:
+    foreground: "#ff2e3f"
+  renamed:
+    foreground: "#08c0ef"
+  ignored:
+    foreground: "#737373"
+    is_dimmed: true
+  conflicted:
+    foreground: "#7b43f8"
+    is_bold: true
+
+git_repo:
+  branch_main:
+    foreground: "#009fff"
+  branch_other:
+    foreground: "#08c0ef"
+  git_clean:
+    foreground: "#07c480"
+  git_dirty:
+    foreground: "#ffca00"
+
+size:
+  major:
+    foreground: "#d568ea"
+  minor:
+    foreground: "#9d6afb"
+  number_byte:
+    foreground: "#a3a3a3"
+  number_kilo:
+    foreground: "#08c0ef"
+  number_mega:
+    foreground: "#009fff"
+  number_giga:
+    foreground: "#9d6afb"
+  number_huge:
+    foreground: "#d568ea"
+
+users:
+  user_you:
+    foreground: "#86c427"
+  user_root:
+    foreground: "#ff2e3f"
+  user_other:
+    foreground: "#a3a3a3"
+  group_yours:
+    foreground: "#08c0ef"
+  group_other:
+    foreground: "#737373"
+  group_root:
+    foreground: "#ff2e3f"
+
+links:
+  normal:
+    foreground: "#a3a3a3"
+  multi_link_file:
+    foreground: "#ffca00"
+
+date:
+  foreground: "#a3a3a3"
+
+inode:
+  foreground: "#737373"
+
+blocks:
+  foreground: "#737373"
+
+header:
+  foreground: "#fafafa"
+  is_bold: true
+
+punctuation:
+  foreground: "#737373"
+
+broken_symlink:
+  foreground: "#ff2e3f"
+  is_bold: true
+
+broken_path_overlay:
+  foreground: "#ff2e3f"

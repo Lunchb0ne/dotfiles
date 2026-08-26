@@ -1,5 +1,15 @@
 #!/bin/zsh
 
+# LS_COLORS via vivid (cached — regenerates when vivid binary updates)
+_ls_colors_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/ls_colors"
+_vivid_theme="${XDG_CONFIG_HOME:-$HOME/.config}/vivid/themes/pierre-dark.yml"
+if [[ ! -f "$_ls_colors_cache" || "$(command -v vivid)" -nt "$_ls_colors_cache" || "$_vivid_theme" -nt "$_ls_colors_cache" ]]; then
+  mkdir -p "${_ls_colors_cache:h}"
+  vivid generate pierre-dark >"$_ls_colors_cache"
+fi
+export LS_COLORS="$(<$_ls_colors_cache)"
+unset _ls_colors_cache _vivid_theme
+
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support

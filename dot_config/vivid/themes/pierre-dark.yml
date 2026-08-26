@@ -1,0 +1,128 @@
+# Pierre Dark terminal palette from https://github.com/pierrecomputer/theme
+colors:
+  black: "171717"
+  red: "ff2e3f"
+  green: "0dbe4e"
+  yellow: "ffca00"
+  blue: "009fff"
+  magenta: "e130ac"
+  cyan: "08c0ef"
+  white: "bcbcbc"
+  bright_black: "171717"
+  bright_red: "ff2e3f"
+  bright_green: "86c427"
+  bright_yellow: "ffca00"
+  bright_blue: "009fff"
+  bright_magenta: "e130ac"
+  bright_cyan: "08c0ef"
+  bright_white: "bcbcbc"
+
+core:
+  normal_text: {}
+  regular_file: {}
+  reset_to_normal: {}
+
+  directory:
+    foreground: blue
+
+  sticky:
+    foreground: blue
+    font-style: bold
+
+  other_writable:
+    foreground: blue
+    font-style: underline
+
+  sticky_other_writable:
+    foreground: blue
+    font-style: [bold, underline]
+
+  executable_file:
+    foreground: yellow
+    font-style: bold
+
+  setuid:
+    foreground: yellow
+    font-style: [bold, underline]
+
+  setgid:
+    foreground: yellow
+    font-style: [bold, underline]
+
+  symlink:
+    foreground: cyan
+    font-style: italic
+
+  broken_symlink:
+    foreground: red
+    font-style: italic
+
+  missing_symlink_target:
+    foreground: red
+    font-style: bold
+
+  multi_hard_link: {}
+
+  fifo:
+    foreground: magenta
+
+  socket:
+    foreground: magenta
+    font-style: bold
+
+  door:
+    foreground: magenta
+    font-style: bold
+
+  block_device:
+    foreground: green
+    font-style: [bold, underline]
+
+  character_device:
+    foreground: green
+    font-style: bold
+
+  file_with_capability: {}
+
+text:
+  special:
+    font-style: bold
+
+  todo:
+    font-style: bold
+
+  licenses: {}
+
+  configuration:
+    font-style: regular
+
+  other: {}
+
+markup:
+  font-style: regular
+
+programming:
+  source:
+    font-style: regular
+
+  tooling:
+    font-style: regular
+
+media:
+  font-style: regular
+
+office:
+  font-style: regular
+
+archives:
+  font-style: regular
+
+executable:
+  font-style: regular
+
+  windows:
+    foreground: yellow
+    font-style: bold
+
+unimportant:
+  font-style: faint
