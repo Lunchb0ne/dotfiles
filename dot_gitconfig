@@ -1,6 +1,7 @@
 [user]
 	email = abhishek.rbg@gmail.com
 	name = Abhishek Aryan
+	# Public SSH signing key from 1Password; update only when rotating the key.
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPdN+mlLgmPXPWI4SoNDWfHxXKLLhcQnBdvjVWDx+kLy
 [init]
 	defaultBranch = main
