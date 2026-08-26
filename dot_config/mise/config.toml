@@ -4,6 +4,10 @@ bun = ["latest"]
 python = ["3.13", "3"]
 usage = "latest"
 uv = "latest"
+vivid = "latest"
+bats = "latest"
+shellcheck = "latest"
+aube = "latest"
 
 [settings]
 experimental = true
